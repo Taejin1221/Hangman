@@ -5,31 +5,67 @@ const body = document.querySelector("body"),
 
 const alphabets = "abcdefghijklmnopqrstuvwxyz";
 
-let answer;
+let life = 5;
+let answer, correct;
+
+function printCurrCorrect() {
+	currCorrect = "";
+	for ( let i = 0; i < answer.length; i++ ) {
+		if ( correct[i] )
+			currCorrect += `${answer[i]} `;
+		else
+			currCorrect += "_ ";
+	}
+
+	wordDiv.innerText = currCorrect;
+}
+
+function attackMan() {
+	life--;
+}
 
 function clickHandler(event) {
-	console.log("hi");
+	const curr = event.target;
+
+	curr.removeEventListener("click", clickHandler);
+	curr.addEventListener("click", function () { alert("No") } );
+	
+	const currAlphabet = curr.innerText;
+	let isCorrect = false;
+
+	for ( let i = 0; i < answer.length; i++ ) {
+		if ( currAlphabet === answer[i] ) {
+			correct[i] = true;
+			isCorrect = true;
+		}
+	}
+
+	if ( isCorrect ) {
+		printCurrCorrect();
+	} else {
+		attackMan();
+	}
 }
 
 function init() {
 	// Add Button
 	for ( let i = 0; i < alphabets.length; i++ ) {
 		const btn = document.createElement("button");
-		btn.innerText = alphabets[i];
 		btn.id = `btn-${alphabets[i]}`;
+		btn.innerText = alphabets[i];
 		btn.addEventListener("click", clickHandler);
 
 		buttonDiv.appendChild( btn );
 	}
 
 	answer = "apple";
+	correct = [ ];
 
-	let underline = "";
 	for ( let i = 0; i < answer.length; i++ ) {
-		underline += "_ ";
+		correct.push( false );
 	}
 
-	wordDiv.innerText = underline;
+	printCurrCorrect();
 }
 
 init();
