@@ -1,5 +1,6 @@
 // hangman.js
 const body = document.querySelector("body"),
+  lifeSpan = body.querySelector(".js-life-span"),
   wordDiv = body.querySelector(".js-word-div"),
   buttonDiv = body.querySelector(".js-button-div"),
   useDiv = body.querySelector(".js-use-div"),
@@ -29,6 +30,7 @@ function printCurrCorrect() {
 
 function attackMan() {
 	life--;
+	lifeSpan.innerText = life;
 	if ( life === 0 ) {
 		resultH2.innerText = `You Lose!\nThe answer is ${answer}`;
 	}
@@ -68,6 +70,8 @@ function clickHandler(event) {
 }
 
 function init() {
+	lifeSpan.innerText = life;
+
 	// Add Button
 	for ( let i = 0; i < alphabets.length; i++ ) {
 		const btn = document.createElement("button");
