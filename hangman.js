@@ -7,7 +7,7 @@ const body = document.querySelector("body"),
   resultH2 = body.querySelector(".js-result-h2");
 
 const alphabets = "abcdefghijklmnopqrstuvwxyz";
-const answerList = [ "apple", ""]
+const answerList = [ "apple", "banana", "grape", "orange", "kiwi", "strawberry", "pear", "lime", "pineapple", "peach", "coconut", "grapefruit", "avocado", "plum" ]
 
 let life = 5, correctNum = 0;
 let answer, correctIdxes;
@@ -68,7 +68,8 @@ function clickHandler(event) {
 
 	if ( isCorrect ) {
 		resultH2.innerText = "Correct Alphabet!";
-		setTimeout( removeResult, 1000 );
+		if ( correctNum != answer.length )
+			setTimeout( removeResult, 1000 );
 		printCurrCorrect();
 	} else {
 		resultH2.innerText = "Incoreect Alphabet!";
@@ -90,7 +91,8 @@ function init() {
 		buttonDiv.appendChild( btn );
 	}
 
-	answer = "apple";
+	const idx = Math.floor(Math.random() * answerList.length);
+	answer = answerList[idx];
 	correctIdxes = [ ];
 
 	for ( let i = 0; i < answer.length; i++ ) {
