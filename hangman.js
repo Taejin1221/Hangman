@@ -1,27 +1,33 @@
 // hangman.js
 const body = document.querySelector("body"),
   wordDiv = body.querySelector(".js-word-div"),
-  buttonDiv = body.querySelector(".js-button-div");
+  buttonDiv = body.querySelector(".js-button-div"),
+  useDiv = body.querySelector(".js-use-div");
 
 const alphabets = "abcdefghijklmnopqrstuvwxyz";
 
-let life = 5;
-let answer, correct;
+let life = 5, correctNum = 0;
+let answer, correctIdxes;
 
 function printCurrCorrect() {
 	currCorrect = "";
 	for ( let i = 0; i < answer.length; i++ ) {
-		if ( correct[i] )
+		if ( correctIdxes[i] )
 			currCorrect += `${answer[i]} `;
 		else
 			currCorrect += "_ ";
 	}
 
 	wordDiv.innerText = currCorrect;
+
+	if ( correctNum === answer.length )
+		alert("You win!");
 }
 
 function attackMan() {
 	life--;
+	if ( life === 0 )
+		alert("You Lose");
 }
 
 function clickHandler(event) {
@@ -31,11 +37,16 @@ function clickHandler(event) {
 	curr.addEventListener("click", function () { alert("No") } );
 	
 	const currAlphabet = curr.innerText;
-	let isCorrect = false;
 
+	let currUse = useDiv.innerText;
+	currUse = `${currUse} ${currAlphabet}`;
+	useDiv.innerText = currUse;
+
+	let isCorrect = false;
 	for ( let i = 0; i < answer.length; i++ ) {
 		if ( currAlphabet === answer[i] ) {
-			correct[i] = true;
+			correctIdxes[i] = true;
+			correctNum++;
 			isCorrect = true;
 		}
 	}
@@ -59,13 +70,15 @@ function init() {
 	}
 
 	answer = "apple";
-	correct = [ ];
+	correctIdxes = [ ];
 
 	for ( let i = 0; i < answer.length; i++ ) {
-		correct.push( false );
+		correctIdxes.push( false );
 	}
 
 	printCurrCorrect();
+
+	useDiv.innerText = " ";
 }
 
 init();
