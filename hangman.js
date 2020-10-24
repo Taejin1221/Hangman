@@ -2,9 +2,11 @@
 const body = document.querySelector("body"),
   wordDiv = body.querySelector(".js-word-div"),
   buttonDiv = body.querySelector(".js-button-div"),
-  useDiv = body.querySelector(".js-use-div");
+  useDiv = body.querySelector(".js-use-div"),
+  resultH2 = body.querySelector(".js-result-h2");
 
 const alphabets = "abcdefghijklmnopqrstuvwxyz";
+const answerList = [ "apple", ""]
 
 let life = 5, correctNum = 0;
 let answer, correctIdxes;
@@ -20,21 +22,28 @@ function printCurrCorrect() {
 
 	wordDiv.innerText = currCorrect;
 
-	if ( correctNum === answer.length )
-		alert("You win!");
+	if ( correctNum === answer.length ) {
+		resultH2.innerText = "You Win!";
+	}
 }
 
 function attackMan() {
 	life--;
-	if ( life === 0 )
-		alert("You Lose");
+	if ( life === 0 ) {
+		resultH2.innerText = `You Lose!\nThe answer is ${answer}`;
+	}
+}
+
+function clickedHandler(event) {
+	resultH2.innerText = "You Already Use that word!";
+	setTimeout(function () { resultH2.innerText = "" }, 1000 );
 }
 
 function clickHandler(event) {
 	const curr = event.target;
 
 	curr.removeEventListener("click", clickHandler);
-	curr.addEventListener("click", function () { alert("No") } );
+	curr.addEventListener("click", clickedHandler );
 	
 	const currAlphabet = curr.innerText;
 
