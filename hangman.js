@@ -12,6 +12,10 @@ const answerList = [ "apple", ""]
 let life = 5, correctNum = 0;
 let answer, correctIdxes;
 
+function removeResult() {
+	resultH2.innerText = "";
+}
+
 function printCurrCorrect() {
 	currCorrect = "";
 	for ( let i = 0; i < answer.length; i++ ) {
@@ -38,7 +42,7 @@ function attackMan() {
 
 function clickedHandler(event) {
 	resultH2.innerText = "You Already Use that word!";
-	setTimeout(function () { resultH2.innerText = "" }, 1000 );
+	setTimeout(removeResult, 1000 );
 }
 
 function clickHandler(event) {
@@ -63,8 +67,12 @@ function clickHandler(event) {
 	}
 
 	if ( isCorrect ) {
+		resultH2.innerText = "Correct Alphabet!";
+		setTimeout( removeResult, 1000 );
 		printCurrCorrect();
 	} else {
+		resultH2.innerText = "Incoreect Alphabet!";
+		setTimeout( removeResult, 1000 );
 		attackMan();
 	}
 }
