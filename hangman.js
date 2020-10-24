@@ -1,23 +1,35 @@
 // hangman.js
 const body = document.querySelector("body"),
-  div = body.querySelector(".js-div");
+  wordDiv = body.querySelector(".js-word-div"),
+  buttonDiv = body.querySelector(".js-button-div");
 
 const alphabets = "abcdefghijklmnopqrstuvwxyz";
+
+let answer;
 
 function clickHandler(event) {
 	console.log("hi");
 }
 
 function init() {
-	console.log( div );
+	// Add Button
 	for ( let i = 0; i < alphabets.length; i++ ) {
 		const btn = document.createElement("button");
 		btn.innerText = alphabets[i];
 		btn.id = `btn-${alphabets[i]}`;
 		btn.addEventListener("click", clickHandler);
 
-		div.appendChild( btn );
+		buttonDiv.appendChild( btn );
 	}
+
+	answer = "apple";
+
+	let underline = "";
+	for ( let i = 0; i < answer.length; i++ ) {
+		underline += "_ ";
+	}
+
+	wordDiv.innerText = underline;
 }
 
 init();
