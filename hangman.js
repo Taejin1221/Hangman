@@ -68,12 +68,13 @@ function clickHandler(event) {
 
 	if ( isCorrect ) {
 		resultH2.innerText = "Correct Alphabet!";
-		if ( correctNum != answer.length )
+		if ( correctNum !== answer.length )
 			setTimeout( removeResult, 1000 );
 		printCurrCorrect();
 	} else {
-		resultH2.innerText = "Incoreect Alphabet!";
-		setTimeout( removeResult, 1000 );
+		resultH2.innerText = "Incorrect Alphabet!";
+		if ( life !== 1 )
+			setTimeout( removeResult, 1000 );
 		attackMan();
 	}
 }
