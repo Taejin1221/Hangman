@@ -1,8 +1,13 @@
 // PlayButton.js
+const alphabets = "abcdefghijkmlnopqrstuvwxyh".split("");
+
 const PlayButton = () => {
+  console.log(alphabets);
   return (
     <div className="play-button">
-      <h1> I am PlayButton </h1>
+      {alphabets.map((val) => (
+        <button> {val} </button>
+      ))}
     </div>
   );
 };
