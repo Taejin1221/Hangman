@@ -1,11 +1,40 @@
 .hangman-status {
-  background-color: red;
+  margin: 10px;
 }
 
 .word-info {
-  background-color: orange;
+  margin: 10px;
 }
 
-.play-button {
-  background-color: yellow;
+.button-container {
+  padding: 10px;
+}
+
+.button {
+  margin-left: 2px;
+  margin-right: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  border-radius: 8px;
+  background-color: darkorchid;
+  color: white;
+}
+
+.button:hover {
+  background-color: purple;
+}
+
+.button.alphabet {
+  font-size: 15px;
+}
+
+.button.restart {
+  margin: 10px;
+}
+
+.button.x {
+  padding-top: 3px;
+  padding-bottom: 3px;
 }

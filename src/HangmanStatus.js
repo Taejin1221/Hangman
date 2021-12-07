@@ -1,8 +1,10 @@
 // HangmanStatus.js
-const HangmanStatus = () => {
+import React from "react";
+
+const HangmanStatus = ({ life }) => {
   return (
     <div className="hangman-status">
-      <h1> I am HangmanStatus </h1>
+      <h1> Your Life: {life} </h1>
     </div>
   );
 };
